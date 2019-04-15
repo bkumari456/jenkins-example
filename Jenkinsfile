@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven_3_5_4'
+        maven 'Maven_3_6_0'
     }
 
     environment {
-        def mavenHome = tool name: 'Maven_3_5_4', type: 'maven'
+        def mavenHome = tool name: 'Maven_3_6_0', type: 'maven'
         def JAVA_HOME = tool name: 'jdk-1.8', type: 'jdk'
     }
 
@@ -15,7 +15,7 @@ pipeline {
 
         stage ('Compile stage') {
             steps {
-                withMaven(maven: 'Maven_3_5_4') {
+                withMaven(maven: 'Maven_3_6_0') {
 
                     sh 'mvn --version'
                     sh 'mvn compile'
@@ -26,7 +26,7 @@ pipeline {
         stage ('Testing stage') {
 
             steps {
-                withMaven(maven: 'Maven_3_5_4') {
+                withMaven(maven: 'Maven_3_6_0') {
                     sh 'mvn test'
                 }
              }
@@ -35,7 +35,7 @@ pipeline {
         stage ('Deployment stage') {
 
                 steps {
-                withMaven(maven: 'Maven_3_5_4') {
+                withMaven(maven: 'Maven_3_6_0') {
                     sh 'mvn deploy'
                 }
              }
